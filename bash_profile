@@ -65,7 +65,7 @@ alias javaRun='javac *.java && java $1'
 alias kotlinRun='Kotlinc *.kt && kotlin $1'
 
 # Compile and run r file
-alias rRun='R CMD BATCH *.r && vi $1.r.Rout'
+alias rRun='R CMD BATCH *.r'
 
 # Compile and run c file
 alias cRun='gcc *.c -o $@ && ./$1'
