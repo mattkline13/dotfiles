@@ -44,6 +44,9 @@ alias qfind="find . -name "
 # Change file permissions to prefered
 alias updatePermissions='chmod -R a-x,o-w,+X $1/'
 
+$ Restart Finder
+alias restartFinder='killall Finder'
+
 
 # NETWORKING
 #--------------------------------------------------------------
