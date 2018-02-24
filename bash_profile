@@ -12,10 +12,10 @@ PROMPT_COMMAND='echo -en "\033]0;Matt Kline - Terminal\a"'
 #--------------------------------------------------------------
 
 # Show directory contents after stepping into
-cd() { builtin cd "$@"; ls -FG; } 
+cd() { builtin cd "$@"; ls -FGl; } 
 
-# Show directories in different color with directory marker
-alias ls='ls -FG'
+# Show directories in different color with directory marker and permissions
+alias ls='ls -FGl'
 
 # Count of non-hidden files in current directory
 alias numFiles='echo $(ls -1 | wc -l)'
