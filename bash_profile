@@ -7,15 +7,21 @@ export PS1="Matt> "
 # Set terminal title
 PROMPT_COMMAND='echo -en "\033]0;Matt Kline - Terminal\a"'
 
+# Set default block size for ls
+export BLOCKSIZE=1k
+
 
 # EASE OF USE
 #--------------------------------------------------------------
 
 # Show directory contents after stepping into
-cd() { builtin cd "$@"; ls -FGl; } 
+cd() { builtin cd "$@"; pwd; ls -FGl; echo""; }
 
 # Show directories in different color with directory marker and permissions
-alias ls='ls -FGl'
+alias ls='pwd && ls -FGl && echo""'
+
+# Preferred less implementation
+alias less='less -FSRXc'
 
 # Allow creation of intermediate directories if specified
 alias mkdir='mkdir -p'
@@ -61,6 +67,9 @@ alias updatePermissions='chmod -R a-x,o-w,+X $1/'
 
 # Restart Finder
 alias restartFinder='killall Finder'
+
+# Zip a folder
+zipf () { zip -r "$1".zip "$1" ; } 
 
 # Extract most know archives with one command
 extract () {
