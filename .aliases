@@ -43,6 +43,10 @@ alias updatePermissions='find ~/Documents -type d -exec chmod 775 {} +; find ~/D
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
 
+# Merge PDF files
+# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
+alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+
 # Zip a folder
 zipf () { zip -r "$1".zip "$1" ; } 
 
