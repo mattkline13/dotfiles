@@ -103,7 +103,17 @@ function openInFindern() {
 }
 
 # Update macOS Apps, Homebrwe, Ruby Gems, NPM and installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+update () {
+  sudo softwareupdate -i -a
+  brew update
+  brew upgrade
+  brew cleanup
+  npm install npm -g
+  npm update -g
+  gem update --system
+  gem update
+  gem cleanup
+}
 
 # Run speed test
 alias network='echo "Speed Test" && speedtest >> speed.txt && cat speed.txt | grep "load:" && rm speed.txt'
