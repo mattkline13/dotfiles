@@ -38,7 +38,7 @@ searchEnd () { /usr/bin/find . -name '*'"$@" ; }
 spotlightSearch () { mdfind "kMDItemDisplayName == '$@'wc"; }
 
 # Change file permissions to prefered
-alias updatePermissions='chmod -R a-x,o-w,+X $1/'
+alias updatePermissions='find ~/Documents -type d -exec chmod 775 {} +; find ~/Documents -type f -exec chmod 774 {} +;'
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
