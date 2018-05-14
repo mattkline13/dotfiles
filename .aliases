@@ -1,0 +1,120 @@
+# Set default block size for ls
+export BLOCKSIZE=1k
+
+# Show directory contents after stepping into
+cd() { builtin cd "$@"; ls -FG; }
+
+# Show directories in different color with directory marker and permissions
+alias ls='ls -FG'
+
+# Preferred less implementation
+alias less='less -FSRXc'
+
+# Allow creation of intermediate directories if specified
+alias mkdir='mkdir -p'
+
+# Show/Hide all hidden files in Finder
+alias showHiddenFiles='defaults write com.apple.finder ShowAllFiles TRUE && killall Finder'
+alias hideHiddenFiles='defaults write com.apple.finder ShowAllFiles FALSE && killall Finder'
+
+# Show/Hide all desktop icons (useful when presenting)
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+# Enable/Disable Spotlight
+alias spotlightOff="sudo mdutil -a -i off"
+alias spotlightOn="sudo mdutil -a -i on"
+
+# Open current directory in Finder
+alias openInFinder='open -a Finder ./'
+
+# Open a file an application
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+
+# Search for a specific file
+alias search="find . -name"
+searchStart () { /usr/bin/find . -name "$@"'*' ; }
+searchEnd () { /usr/bin/find . -name '*'"$@" ; }
+spotlightSearch () { mdfind "kMDItemDisplayName == '$@'wc"; }
+
+# Change file permissions to prefered
+alias updatePermissions='chmod -R a-x,o-w,+X $1/'
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
+# Zip a folder
+zipf () { zip -r "$1".zip "$1" ; } 
+
+# Extract most know archives with one command
+extract () {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+# `s` with no arguments opens the current directory in Sublime Text, otherwise
+# opens the given location
+function openInSublime() {
+    if [ $# -eq 0 ]; then
+        subl .;
+    else
+        subl "$@";
+    fi;
+}
+
+# `v` with no arguments opens the current directory in Vim, otherwise opens the
+# given location
+function openInVim() {
+    if [ $# -eq 0 ]; then
+        vim .;
+    else
+        vim "$@";
+    fi;
+}
+
+# `o` with no arguments opens the current directory, otherwise opens the given
+# location
+function openInFindern() {
+    if [ $# -eq 0 ]; then
+        open .;
+    else
+        open "$@";
+    fi;
+}
+
+# Update macOS Apps, Homebrwe, Ruby Gems, NPM and installed packages
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+# Run speed test
+alias network='echo "Speed Test" && speedtest >> speed.txt && cat speed.txt | grep "load:" && rm speed.txt'
+
+# Get public and local IP addresses
+alias getIP='echo "Local IP" && ipconfig getifaddr en0 && echo "Public IP" && curl ifconfig.me'
+
+# Compile and run java file
+alias javaRun='javac *.java; java $1'
+
+# Compile and run Kotlin file
+alias kotlinRun='Kotlinc *.kt; kotlin $1'
+
+# Compile and run r file
+alias rRun='R CMD BATCH *.r'
+
+# Compile and run c file
+alias cRun='gcc *.c -o $@; ./$1'
