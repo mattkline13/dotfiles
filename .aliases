@@ -2,20 +2,30 @@
 export BLOCKSIZE=1k
 
 # Show directory contents after stepping into
-cd() { builtin cd "$@"; ls -FG; }
+cd() {
+    builtin cd "$@"
+    ls -FG
+}
 
 # Show directories in different color with directory marker and permissions
-alias ls='ls -FG'
+alias ls="ls -FG"
+
+
+# Easier navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 # Preferred less implementation
-alias less='less -FSRXc'
+alias less="less -FSRXc"
 
 # Allow creation of intermediate directories if specified
-alias mkdir='mkdir -p'
+alias mkdir="mkdir -p"
 
 # Show/Hide all hidden files in Finder
-alias showHiddenFiles='defaults write com.apple.finder ShowAllFiles TRUE && killall Finder'
-alias hideHiddenFiles='defaults write com.apple.finder ShowAllFiles FALSE && killall Finder'
+alias showHiddenFiles="defaults write com.apple.finder ShowAllFiles TRUE && killall Finder"
+alias hideHiddenFiles="defaults write com.apple.finder ShowAllFiles FALSE && killall Finder"
 
 # Show/Hide all desktop icons (useful when presenting)
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
@@ -25,34 +35,28 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias spotlightOff="sudo mdutil -a -i off"
 alias spotlightOn="sudo mdutil -a -i on"
 
-# Open current directory in Finder
-alias openInFinder='open -a Finder ./'
-
-# Open a file an application
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-
-# Search for a specific file
-alias search="find . -name"
-searchStart () { /usr/bin/find . -name "$@"'*' ; }
-searchEnd () { /usr/bin/find . -name '*'"$@" ; }
-spotlightSearch () { mdfind "kMDItemDisplayName == '$@'wc"; }
-
-# Change file permissions to prefered
-alias updatePermissions='find ~/Documents -type d -exec chmod 775 {} +; find ~/Documents -type f -exec chmod 774 {} +;'
-
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
 
-# Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+# Merge PDF files - Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
+alias mergepdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py"
+
+# Search for a specific file
+alias search="find . -name"
+
+# Open a file in sublime
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+
+
 
 # Zip a folder
-zipf () { zip -r "$1".zip "$1" ; } 
+zipf () { 
+    zip -r "$1".zip "$1"
+} 
 
 # Extract most know archives with one command
 extract () {
-    if [ -f $1 ] ; then
+    if [ -f $1 ]; then
       case $1 in
         *.tar.bz2)   tar xjf $1     ;;
         *.tar.gz)    tar xzf $1     ;;
@@ -65,16 +69,15 @@ extract () {
         *.zip)       unzip $1       ;;
         *.Z)         uncompress $1  ;;
         *.7z)        7z x $1        ;;
-        *)     echo "'$1' cannot be extracted via extract()" ;;
+        *)     echo ""$1" cannot be extracted via extract()" ;;
         esac
     else
-        echo "'$1' is not a valid file"
+        echo ""$1" is not a valid file"
     fi
 }
 
-# `s` with no arguments opens the current directory in Sublime Text, otherwise
-# opens the given location
-function openInSublime() {
+# Open a file or if no argument is given the entire directory in sublime
+sublime() {
     if [ $# -eq 0 ]; then
         subl .;
     else
@@ -82,23 +85,21 @@ function openInSublime() {
     fi;
 }
 
-# `v` with no arguments opens the current directory in Vim, otherwise opens the
-# given location
-function openInVim() {
-    if [ $# -eq 0 ]; then
-        vim .;
-    else
-        vim "$@";
-    fi;
-}
-
-# `o` with no arguments opens the current directory, otherwise opens the given
-# location
-function openInFindern() {
+# Open a file or if no argument is given the entire directory in finder
+finder() {
     if [ $# -eq 0 ]; then
         open .;
     else
         open "$@";
+    fi;
+}
+
+# Open a file or if no argument is given the entire directory in atom
+openatom() {
+    if [ $# -eq 0 ]; then
+        atom .;
+    else
+        atom "$@";
     fi;
 }
 
@@ -115,20 +116,51 @@ update () {
   gem cleanup
 }
 
+# Change file permissions to prefered
+updatePermissions() {
+    find ~/Documents -type d -exec chmod 775 {} +
+    find ~/Documents -type f -exec chmod 774 {} +
+    find ~/Desktop -type d -exec chmod 775 {} +
+    find ~/Desktop -type f -exec chmod 774 {} +
+    find ~/Downloads -type d -exec chmod 775 {} +
+    find ~/Downloads -type f -exec chmod 774 {} +
+}
+
 # Run speed test
-alias network='echo "Speed Test" && speedtest >> speed.txt && cat speed.txt | grep "load:" && rm speed.txt'
+runspeedtest() {
+    echo "Speed Test"
+    speedtest >> speed.txt
+    cat speed.txt | grep "load:"
+    rm speed.txt
+}
 
 # Get public and local IP addresses
-alias getIP='echo "Local IP" && ipconfig getifaddr en0 && echo "Public IP" && curl ifconfig.me'
+getIP() {
+    echo "Local IP"
+    ipconfig getifaddr en0;
+    echo "Public IP"
+    curl ifconfig.me
+}
 
 # Compile and run java file
-alias javaRun='javac *.java; java $1'
+javaRun() {
+    javac *.java
+    java $1
+}
 
 # Compile and run Kotlin file
-alias kotlinRun='Kotlinc *.kt; kotlin $1'
+kotlinRun() {
+    Kotlinc *.kt
+    kotlin $1
+}
 
 # Compile and run r file
-alias rRun='R CMD BATCH *.r'
+rRun(){
+    R CMD BATCH *.r
+}
 
 # Compile and run c file
-alias cRun='gcc *.c -o $@; ./$1'
+cRun(){
+    gcc *.c -o $@
+    ./$1
+}
