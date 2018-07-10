@@ -129,9 +129,7 @@ updatePermissions() {
 # Run speed test
 runspeedtest() {
     echo "Speed Test"
-    speedtest >> speed.txt
-    cat speed.txt | grep "load:"
-    rm speed.txt
+    speedtest | grep "load:"
 }
 
 # Get public and local IP addresses
