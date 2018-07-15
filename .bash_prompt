@@ -80,7 +80,7 @@ fi;
 
 # Set terminal prompt
 PS1="\n"
-PS1+="\[${userStyle}\]Matt " # User info
+PS1+="\[${userStyle}\]\u " # User info
 PS1+="\[${white}\]at "
 PS1+="\[${hostStyle}\]\h " # Machine Info
 PS1+="\[${white}\]in "
