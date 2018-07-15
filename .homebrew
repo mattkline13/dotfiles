@@ -1,0 +1,27 @@
+#! /bin/bash
+
+xcode-select --install;
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
+
+brew update;
+brew upgrade;
+brew install wget;
+brew install cask;
+brew install googler;
+brew install ant;
+brew install openssh;
+brew install python;
+brew install python3;
+brew install python@2;
+brew install r;
+brew install gcc;
+brew install ruby;
+brew install speedtest-cli;
+brew install maven;
+brew install git;
+brew install calc;
+brew install coreutils;
+brew install moreutils;
+brew install findutils;
+brew install ssh-copy-id;
+brew install bash-completion;
