@@ -25,3 +25,5 @@ brew install moreutils;
 brew install findutils;
 brew install ssh-copy-id;
 brew install bash-completion;
+brew install openssl;
+brew install sqlite;
