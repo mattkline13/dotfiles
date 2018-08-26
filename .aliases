@@ -159,6 +159,18 @@ rRun(){
 
 # Compile and run c file
 cRun(){
-    gcc *.c -o $@
+    gcc *.c -o $1
     ./$1
+}
+
+# Compile and run c++ file
+cppRun(){
+    g++ *.cpp -o $1
+    ./$1
+}
+
+# Start Debian terminal using docker
+debianStart(){
+    docker start debian;
+    docker attach debian;
 }
