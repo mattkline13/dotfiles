@@ -126,6 +126,11 @@ updatePermissions() {
     find ~/Downloads -type f -exec chmod 774 {} +
 }
 
+# Make file executible
+makeExecutable() {
+    chmod 775 $1
+}
+
 # Run speed test
 runspeedtest() {
     echo "Speed Test"
@@ -169,8 +174,18 @@ cppRun(){
     ./$1
 }
 
+# Create a Debian Docker File 
+debianCreate(){
+    docker run --name="debian" -it -v ~/Documents/Debian:/Documents debian /bin/bash;
+}
+
 # Start Debian terminal using docker
 debianStart(){
     docker start debian;
     docker attach debian;
 }
+
+# After the docker container is running you will need to run the following commands in the debian terminal to setup the enviornment
+
+# chmod 775 ~/../Documents/.setup
+# ./~/../Documents/.setup
