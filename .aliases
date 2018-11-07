@@ -190,3 +190,13 @@ debianStart(){
     docker attach debian_command_line;
 }
 
+# Docker webgoat enviornment
+# docker pull webgoat/webgoat-7.1
+# docker run --name="webgoat_enviornment" -p 8080:8080 -t webgoat/webgoat-7.1
+# This will build the webgoat enviornment and expose it to port 8080 for you to attach.
+
+# Relaunch the webgoat enviornment
+webgoatStart(){
+    docker start webgoat_enviornment;
+    docker attach webgoat_enviornment;
+}
