@@ -175,28 +175,28 @@ cppRun(){
 }
 
 
-# Docker Debian enviornment
+# Docker Debian environment
 # Navigate to debian folder with .bashrc file and Dockerfile
 # Run 
 # docker build -t debian .
 # This will build the project with the specifications given in the Dockerfile
 # Run 
 # docker run --name="debian_command_line" -it -v ~/Documents/debian:/Documents debian
-# This will start a debian enviornment
+# This will start a debian environment
 
-# Relaunch the existing debian enviornment
+# Relaunch the existing debian environment
 debianStart(){
     docker start debian_command_line;
     docker attach debian_command_line;
 }
 
-# Docker webgoat enviornment
+# Docker webgoat environment
 # docker pull webgoat/webgoat-7.1
-# docker run --name="webgoat_enviornment" -p 8080:8080 -t webgoat/webgoat-7.1
-# This will build the webgoat enviornment and expose it to port 8080 for you to attach.
+# docker run --name="webgoat_environment" -p 8080:8080 -t webgoat/webgoat-7.1
+# This will build the webgoat environment and expose it to port 8080 for you to attach.
 
-# Relaunch the webgoat enviornment
+# Relaunch the webgoat environment
 webgoatStart(){
-    docker start webgoat_enviornment;
-    docker attach webgoat_enviornment;
+    docker start webgoat_environment;
+    docker attach webgoat_environment;
 }
