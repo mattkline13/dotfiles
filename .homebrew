@@ -5,10 +5,12 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 
 brew update;
 brew upgrade;
+brew install grep;
 brew install wget;
 brew install cask;
 brew install googler;
 brew install ant;
+brew install screen;
 brew install openssh;
 brew install python;
 brew install python3;
@@ -28,14 +30,15 @@ brew install coreutils;
 brew install moreutils;
 brew install findutils;
 brew install ssh-copy-id;
+brew install bash;
 brew install bash-completion;
+brew install bash-completion2;
 brew install openssl;
 brew install sqlite;
 
 brew cask install java;
 brew cask install adobe-acrobat-reader;
 brew cask install google-chrome;
-brew cask install google-backup-and-sync;
 brew cask install firefox;
 brew cask install docker;
 brew cask install microsoft-office;
@@ -56,3 +59,5 @@ brew cask install processing;
 brew cask install appcleaner;
 brew cask install gemini;
 brew cask install cleanmymac;
+
+brew cleanup;

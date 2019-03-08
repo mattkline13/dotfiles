@@ -1,8 +1,11 @@
 # Load the shell dotfiles
-for file in ~/.{bash_prompt,aliases}; do
+for file in ~/.{bash_prompt,exports,aliases,functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
+
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob;
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend;
@@ -21,7 +24,6 @@ fi;
 if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
 	complete -o default -o nospace -F _git g;
 fi;
-export PATH="/usr/local/sbin:$PATH"
 
 # initialize rbenv for ruby on rails
 eval "$(rbenv init -)"

@@ -1,0 +1,174 @@
+#!/usr/bin/env bash
+
+# Show the uptime (including load) and the top 10 processes by CPU usage.
+function top10 {
+    uptime;
+    if [[ "$OSTYPE" =~ ^darwin ]]; then
+        ps waux -r;
+    else
+        ps waux --sort='-%cpu';
+    fi | head -n 11 | cut -c "1-${COLUMNS:-80}";
+}
+
+# Zip a folder
+zipf () { 
+    zip -r "$1".zip "$1"
+} 
+
+# Extract most know archives with one command
+extract () {
+    if [ -f $1 ]; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo ""$1" cannot be extracted via extract()" ;;
+        esac
+    else
+        echo ""$1" is not a valid file"
+    fi
+}
+
+# Determine size of a file or total size of a directory
+function filesize() {
+    if du -b /dev/null > /dev/null 2>&1; then
+        local arg=-sbh;
+    else
+        local arg=-sh;
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@";
+    else
+        du $arg .[^.]* ./*;
+    fi;
+}
+
+# Open a file or if no argument is given the entire directory in sublime
+sublime() {
+    if [ $# -eq 0 ]; then
+        subl .;
+    else
+        subl "$@";
+    fi;
+}
+
+# Open a file or if no argument is given the entire directory in finder
+finder() {
+    if [ $# -eq 0 ]; then
+        open .;
+    else
+        open "$@";
+    fi;
+}
+
+# Open a file or if no argument is given the entire directory in atom
+openatom() {
+    if [ $# -eq 0 ]; then
+        atom .;
+    else
+        atom "$@";
+    fi;
+}
+
+# Update macOS Apps, Homebrwe, Ruby Gems, NPM and installed packages
+update () {
+  sudo softwareupdate -i -a
+  brew update
+  brew upgrade
+  brew cleanup
+  npm install npm -g
+  npm update -g
+  gem update --system
+  gem update
+  gem cleanup
+}
+
+# Make file executible
+makeExecutable() {
+    chmod 775 $1
+}
+
+# Run speed test
+runspeedtest() {
+    echo "Speed Test"
+    speedtest | grep "load:"
+}
+
+# Get public and local IP addresses
+getIP() {
+    echo "Local IP"
+    ipconfig getifaddr en0;
+    echo "Public IP"
+    curl ifconfig.me
+}
+
+# Docker Debian environment
+# Navigate to debian folder with .bashrc file and Dockerfile
+# Run 'docker build -t debian .''
+# This will build the project with the specifications given in the Dockerfile
+# Run 'docker run --name="debian_command_line" -it -v ~/Documents/debian:/Documents debian'
+# This will start a debian environment
+
+# Relaunch the existing debian environment
+debianStart(){
+    docker start debian_command_line;
+    docker attach debian_command_line;
+}
+
+# Docker webgoat environment
+# docker pull webgoat/webgoat-7.1
+# docker run --name="webgoat_environment" -p 8080:8080 -t webgoat/webgoat-7.1
+# This will build the webgoat environment and expose it to port 8080 for you to attach.
+# Relaunch the webgoat environment
+webgoatStart(){
+    docker start webgoat_environment;
+    docker attach webgoat_environment;
+}
+
+# SSH into Raspberry PI
+sshpi() {
+    ssh matt@10.0.0.10
+}
+
+# SSH into rileys server
+sshriley() {
+    ssh mkline@
+}
+
+
+# Compile and run java file
+javaRun() {
+    javac *.java
+    java $1
+}
+
+# Compile and run Kotlin file
+kotlinRun() {
+    Kotlinc *.kt
+    kotlin $1
+}
+
+# Compile and run r file
+rRun(){
+    R CMD BATCH *.r
+}
+
+# Compile and run c file
+cRun(){
+    gcc *.c -o $1
+    ./$1
+}
+
+# Compile and run c++ file
+cppRun(){
+    g++ *.cpp -o $1
+    ./$1
+}
