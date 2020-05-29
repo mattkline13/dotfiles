@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -71,7 +73,3 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
 # Minimize apps into icon
 defaults write com.apple.dock minimize-to-application -bool true
-
-
-
-

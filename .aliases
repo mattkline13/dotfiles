@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /bin/bash
 
 # Show directory contents after stepping into
 cd() {
@@ -43,9 +43,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Merge PDF files - Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
 alias mergepdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py"
-
-# Search for a specific file
-alias search="find . -name"
 
 # Open a file in sublime
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'

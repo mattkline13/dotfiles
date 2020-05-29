@@ -1,30 +1,19 @@
 #! /bin/bash
 
+# Install xcode extension and Homebrew
 xcode-select --install;
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
 
+# Cleanup Homebrew
 brew update;
 brew upgrade;
+
+# Useful Tools
 brew install grep;
 brew install wget;
 brew install cask;
-brew install googler;
 brew install ant;
 brew install screen;
-brew install openssh;
-brew install python;
-brew install python3;
-brew install python@2;
-brew install r;
-brew install gcc;
-brew install ruby;
-brew install ruby-build;
-brew install rbenv;
-rbenv install 2.5.1;
-gem install rails;
-brew install speedtest-cli;
-brew install maven;
-brew install git;
 brew install calc;
 brew install coreutils;
 brew install moreutils;
@@ -33,31 +22,52 @@ brew install ssh-copy-id;
 brew install bash;
 brew install bash-completion;
 brew install bash-completion2;
+brew install openssh;
 brew install openssl;
-brew install sqlite;
 
+# Extra Add Ons
+brew install googler;
+brew install speedtest-cli;
+
+# Language Support 
+brew install python;
+brew install python3;
+brew install python@2;
+brew install r;
+brew install gcc;
+brew install git;
+brew install node;
+brew install angular-cli;
+brew install npm;
 brew cask install java;
+
+# Software
 brew cask install adobe-acrobat-reader;
 brew cask install google-chrome;
 brew cask install firefox;
-brew cask install docker;
 brew cask install microsoft-office;
 brew cask install slack;
 brew cask install discord;
 brew cask install dropbox;
-brew cask install virtualbox;
-brew cask install virtualbox-extension-pack;
-brew cask install jetbrains-toolbox;
-brew cask install sublime-text;
-brew cask install atom;
-brew cask install rstudio;
-brew cask install android-studio;
-brew cask install visual-studio;
-brew cask install visual-studio-code;
-brew cask install github;
-brew cask install processing;
-brew cask install appcleaner;
 brew cask install gemini;
 brew cask install cleanmymac;
 
+# Editors
+brew cask install sublime-text;
+brew cask install atom;
+brew cask install visual-studio-code;
+
+# Language specific IDE's
+brew cask install rstudio;
+brew cask install android-studio;
+brew cask install visual-studio;
+brew cask install processing;
+brew cask install jetbrains-toolbox;
+
+# Developer Tools
+brew cask install docker;
+brew cask install virtualbox;
+brew cask install virtualbox-extension-pack;
+
+# Cleanup Homebrew
 brew cleanup;

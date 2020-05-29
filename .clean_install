@@ -1,0 +1,16 @@
+#! /bin/bash
+
+echo 'Moving Files to root'
+mv .aliases ~/
+mv .bash_profile ~/
+mv .bash_prompt ~/
+mv .bashrc ~/
+mv .homebrew ~/
+mv .osx ~/
+mv .vimrc ~/
+
+echo 'Setting up workspace'
+echo 'This will take a while and may require a password at points'
+echo './.osx'
+echo './.homebrew'
+
