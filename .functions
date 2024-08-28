@@ -69,15 +69,6 @@ finder() {
     fi;
 }
 
-# Open a file or if no argument is given the entire directory in atom
-openatom() {
-    if [ $# -eq 0 ]; then
-        atom .;
-    else
-        atom "$@";
-    fi;
-}
-
 # Update macOS Apps, Homebrwe, Ruby Gems, NPM and installed packages
 update () {
   sudo softwareupdate -i -a
@@ -91,12 +82,6 @@ update () {
 # Make file executible
 makeExecutable() {
     chmod 775 $1
-}
-
-# Run speed test
-runspeedtest() {
-    echo "Speed Test"
-    speedtest | grep "load:"
 }
 
 # Get public and local IP addresses
