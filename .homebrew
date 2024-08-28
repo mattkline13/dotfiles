@@ -12,22 +12,13 @@ brew upgrade;
 brew install grep;
 brew install wget;
 brew install cask;
-brew install ant;
 brew install screen;
-brew install calc;
 brew install coreutils;
 brew install moreutils;
 brew install findutils;
-brew install ssh-copy-id;
 brew install bash;
 brew install bash-completion;
 brew install bash-completion2;
-brew install openssh;
-brew install openssl;
-
-# Extra Add Ons
-brew install googler;
-brew install speedtest-cli;
 
 # Language Support 
 brew install python;
@@ -42,32 +33,22 @@ brew install npm;
 brew cask install java;
 
 # Software
-brew cask install adobe-acrobat-reader;
 brew cask install google-chrome;
 brew cask install firefox;
-brew cask install microsoft-office;
-brew cask install slack;
 brew cask install discord;
-brew cask install dropbox;
-brew cask install gemini;
-brew cask install cleanmymac;
+brew cask install whatsapp;
+brew cask install spotify;
+brew cask install nordvpn;
+brew cask install appcleaner;
 
 # Editors
 brew cask install sublime-text;
-brew cask install atom;
 brew cask install visual-studio-code;
 
 # Language specific IDE's
-brew cask install rstudio;
-brew cask install android-studio;
 brew cask install visual-studio;
 brew cask install processing;
-brew cask install jetbrains-toolbox;
-
-# Developer Tools
-brew cask install docker;
-brew cask install virtualbox;
-brew cask install virtualbox-extension-pack;
+brew cask install beyond-compare
 
 # Cleanup Homebrew
 brew cleanup;
